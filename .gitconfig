@@ -1,0 +1,9 @@
+[user]
+	name = Josh Boyd
+	email = joshua.boyd@endeavorsystems.com
+[color]
+	ui = auto
+[push]
+	default = tracking
+[merge]
+	tool = vimdiff

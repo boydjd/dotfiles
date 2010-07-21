@@ -1,0 +1,10 @@
+URxvt*termName: rxvt-256color
+URxvt.visualBell: false
+URxvt.background: Black
+URxvt.foreground: Green
+URxvt.scrollBar: false
+URxvt.saveLines: 65535
+URxvt.cursorBlink: true
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: google-chrome 
+URxvt.font: xft:Inconsolata:size=11:antialia=true
