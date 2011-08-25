@@ -1,3 +1,4 @@
+set backspace=2
 set ruler
 set guioptions=em
 set showtabline=2
@@ -21,8 +22,6 @@ set wrap!
 set incsearch
 set ignorecase
 set smartcase
-set spelllang=en
-set spellsuggest=9
 augroup mkd
 autocmd BufRead *.md set ai formatoptions=tcroqn2 comments=n:&gt;
 augroup END
@@ -34,3 +33,5 @@ let NERDTreeShowFiles = 1
 syntax on
 ca w!! w !sudo tee "%" > /dev/null
 let g:SuperTabDefaultCompleteType = "context"
+set statusline=%{fugitive#statusline()}\ %t\ %y\ format:\ %{&ff};\ [%c,%l]
+"set statusline=%{fugitive#statusline()}

@@ -7,3 +7,5 @@
 	default = tracking
 [merge]
 	tool = vimdiff
+[core]
+	autocrlf = false
