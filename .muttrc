@@ -1,0 +1,111 @@
+set imap_user = ""
+set imap_pass = ""
+
+set smtp_url = "smtp://"
+
+set from = ""
+set realname = ""
+
+set folder = "imap://"
+set spoolfile = "+INBOX"
+set postponed = "+INBOX/Drafts"
+set record="+INBOX/Sent"
+
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+
+set move = no
+unset imap_passive
+set imap_check_subscribed
+set mail_check=60
+set timeout=60
+set connect_timeout=60
+
+set net_inc=5
+ignore *
+unignore From: To: Cc: Subject: Date:
+
+set use_from=yes
+set envelope_from="yes"
+set editor=vim
+set sort="reverse-threads"
+set strict_threads="no"
+set sort_browser="reverse-date"
+set sort_aux="last-date-received"
+unset collapse_unread
+bind index - collapse-thread
+bind index _ collapse-all
+set index_format="%?M?+& ?%2M %2e %Z %D %-20.20F (%4c) %s"
+set pager_index_lines=25
+set pager="builtin"
+set pager_context=5
+set tilde
+unset resolve
+bind pager <up> previous-line
+bind pager <down> next-line
+bind pager [ previous-unread
+bind pager ] next-unread
+set charset=UTF8
+unset beep
+set beep_new=yes
+set recall=no
+unset metoo
+
+# sidebar configuration
+set sidebar_width=20
+set sidebar_visible=yes
+set sidebar_delim='|'
+#set sidebar_sort=yes
+
+mailboxes =INBOX =INBOX.Git =INBOX.Crucible =INBOX.Jira =INBOX.Wiki =INBOX.Bamboo =INBOX.Redmine =INBOX.Drafts =INBOX.Sent =INBOX.Spam =INBOX.Trash =INBOX.Archive =INBOX.PRTG
+
+color sidebar_new yellow default
+
+# ctrl-n, ctrl-p to select next, prev folder
+# ctrl-o to open selected folder
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+# Remap bounce-message function to "B"
+bind index B bounce-message
+
+fcc-hook .*                                                      =INBOX
+
+macro index,pager \cb "<enter-command> unset pipe_decode<enter><pipe-message>/home/jboyd/bin/extract_url.pl<enter>" "get URLs"
+macro index,pager d "s=INBOX.Trash\n" "move message to trash"
+macro index,pager A "s=INBOX.Archive\n" "move message to archive"
+
+folder-hook "=INBOX.Trash" 'push "D~d>2d"\n'
+folder-hook "=INBOX.Spam" 'push "D~d>2d"\n'
+folder-hook "=INBOX.PRTG" 'push "D~d>2d"\n'
+folder-hook "=INBOX.Redmine" 'push "D~d>5d"\n'
+folder-hook "=INBOX.Git" 'push "D~d>5d"\n'
+folder-hook "=INBOX.Crucible" 'push "D~d>5d"\n'
+folder-hook "=INBOX.Bamboo" 'push "D~d>5d"\n'
+folder-hook "=INBOX.Jira" 'push "D~d>5d"\n'
+folder-hook "=INBOX.Wiki" 'push "D~d>5d"\n'
+
+source ~/.mutt/themes/calmar.dark
+
+auto_view text/calendar
+auto_view application/octet-stream
+auto_view application/msword
+auto_view application/vnd.ms-excel
+auto_view application/pdf
+auto_view text/html
+auto_view application/vnd.openxmlformats-officedocument.wordprocessingml.document
+auto_view application/vnd.openxmlformats-officedocument.presentationml.presentation
+mime_lookup application/octet-stream
+
+alternative_order text/plain
+
+set alias_file=~/.mutt/aliases
+source ~/.mutt/aliases

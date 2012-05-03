@@ -11,3 +11,7 @@ augroup END
 augroup phtml
   au! BufRead,BufNewFile *.phtml setfiletype php
 augroup END
+
+augroup filetypedetect
+    au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+augroup END

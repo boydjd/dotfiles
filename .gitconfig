@@ -1,6 +1,6 @@
 [user]
 	name = Josh Boyd
-	email = joshua.boyd@endeavorsystems.com
+	email = joshuab@joinvip.com
 [color]
 	ui = auto
 [push]
@@ -8,4 +8,4 @@
 [merge]
 	tool = vimdiff
 [core]
-	autocrlf = false
+	autocrlf = input

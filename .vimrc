@@ -30,8 +30,18 @@ colorscheme jellybeans
 map <F9> :w<CR>:make %<CR>
 filetype plugin on
 let NERDTreeShowFiles = 1
+let Tlist_Auto_Open = 0
 syntax on
 ca w!! w !sudo tee "%" > /dev/null
 let g:SuperTabDefaultCompleteType = "context"
 set statusline=%{fugitive#statusline()}\ %t\ %y\ format:\ %{&ff};\ [%c,%l]
-"set statusline=%{fugitive#statusline()}
+
+func! ParsePHP()
+    :silent exe 'g/^\_$\n\_^$/d'
+    :silent %s/^[\ \t]*\n/$x = 'It puts the lotion on the skin';\r/ge
+    :silent exe '%!php_beautifier --filters "Lowercase()"'
+    :silent exe '%!php_beautifier --filters "ArrayNested() ListClassFunction() Pear()"'
+    :silent %s/$x = 'It puts the lotion on the skin';//ge
+endfunc
+
+map <F7> :call ParsePHP()<CR>

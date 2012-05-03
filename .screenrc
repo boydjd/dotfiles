@@ -5,17 +5,16 @@ attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
 # # erase background with current bg color 
 defbce "on" 
-#term screen-256color
-screen -t irssi 0 irssi
+term rxvt-256color
+screen -t mail 0 mutt 
 screen -t ranger 0 bash -i -c "ranger"
 screen -t bash 0 bash 
-screen -t openfisma 0 bash -c "cd /home/josh/src/openfisma; bash"
 screen -t mysql 0 mysql -u root 
 select bash
 autodetach on
 startup_message off
 defscrollback 30000
-vbell off
+vbell on 
 hardstatus alwayslastline
 hardstatus string '%{= w}%-w%{=b b}(%{b}%n %t%{= b})%{= w} %+w %{= g} %= %{g} %{=b R}%H%{= g} - %{=b Y}%l%{= g} - %{=b B}%M %d %C %a'
 nonblock on

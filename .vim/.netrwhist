@@ -1,10 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/josh/src/openfisma/library/ZFDebug/Controller/Plugin/Debug'
-let g:netrw_dirhist_2='/home/josh/src/openfisma/public/javascripts/Fisma'
-let g:netrw_dirhist_3='/home/josh/src/openfisma/library/Doctrine/Validator'
-let g:netrw_dirhist_4='/home/josh/src/openfisma/application/config'
-let g:netrw_dirhist_5='/home/josh/Desktop/kohana-3.1-master-10/modules/database/classes/kohana/database/query/builder'
-let g:netrw_dirhist_6='/home/josh/src/openfisma/library/Fisma/Doctrine/Validator'
-let g:netrw_dirhist_7='/home/josh/src/openfisma/scripts/..'
-let g:netrw_dirhist_8='/home/josh/src/openfisma/application/config'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/jboyd/.imapfilter'
+let g:netrw_dirhist_2='/home/jboyd/.vim'
+let g:netrw_dirhist_3='/home/jboyd/src/gitolite-admin/conf'
+let g:netrw_dirhist_4='/home/jboyd/src/joinvip/www/smarty/templates/web/mobile/signup'
+let g:netrw_dirhist_5='/home/jboyd/src/joinvip/www/web/js/mobile'
