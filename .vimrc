@@ -1,47 +1,78 @@
-set backspace=2
-set ruler
-set guioptions=em
-set showtabline=2
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
-set autoindent
-let Tlist_Sort_Type = "name"
-let Tlist_Auto_Open = 1
-let Tlist_Auto_Update = 1
-let Tlist_Compact_Format = 1
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Exit_OnlyWindow = 1
+" Use Vim settings, rather than Vi settings
+set nocompatible
+
+" Pathogen plugin manager
+execute pathogen#infect()
+execute pathogen#helptags()
+
+" General config
+
+set number 					" Show line numbers
+set showmode					" Show current mode down the bottom
+set gcr=a:blinkon0				" Disable cursor blinkd
+set visualbell					" No sounds
+set hidden					" Buffers can exist in the background without being in a window
+
+" Search settings
+set hlsearch					" Highlight searches
+set viminfo='100,f1				" Save up to 100 marks, enable capital marks
+
+" Turn off swap files
+set noswapfile
 set nobackup
-set number
-set nuw=6
+set nowb
+
+" Persistent undo
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+
+" Indentation
+set smartindent
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+
+" Display tabs and trailing spaces visually
+"set list listchars=tab:\ \ ,trail:·
+
+set nowrap 					" Don't wrap lines
+set linebreak					" Wrap lines at convenient points
+
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
+" Leave insert mode immediately, not a second from now
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
+set noruler
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text
+
+"set statusline=%{fugitive#statusline()}\ %t\ %y\ format:\ %{&ff};\ [%c,%l]
+set t_Co=16
+
+" Setup solarized colorscheme
+set background=dark
+let g:solarized_termcolors=16
+colorscheme solarized
+
 nnoremap <silent> <F8> :TlistToggle<CR>
-set wrap!
-set incsearch
-set ignorecase
-set smartcase
-augroup mkd
-autocmd BufRead *.md set ai formatoptions=tcroqn2 comments=n:&gt;
-augroup END
-set t_Co=256
-colorscheme jellybeans 
-map <F9> :w<CR>:make %<CR>
-filetype plugin on
-let NERDTreeShowFiles = 1
-let Tlist_Auto_Open = 0
-syntax on
-ca w!! w !sudo tee "%" > /dev/null
-let g:SuperTabDefaultCompleteType = "context"
-set statusline=%{fugitive#statusline()}\ %t\ %y\ format:\ %{&ff};\ [%c,%l]
+set ofu=syntaxcomplete#Complete
+let g:neocomplcache_enable_at_startup = 1
+let g:Powerline_symbols = 'fancy'
 
-func! ParsePHP()
-    :silent exe 'g/^\_$\n\_^$/d'
-    :silent %s/^[\ \t]*\n/$x = 'It puts the lotion on the skin';\r/ge
-    :silent exe '%!php_beautifier --filters "Lowercase()"'
-    :silent exe '%!php_beautifier --filters "ArrayNested() ListClassFunction() Pear()"'
-    :silent %s/$x = 'It puts the lotion on the skin';//ge
-endfunc
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_check_on_open=1
+let g:syntastic_auto_jump=1
+"let g:syntastic_auto_loc_list=1
+let g:synastic_enable_highlighting=1
+let g:syntastic_echo_current_error=1
 
-map <F7> :call ParsePHP()<CR>
