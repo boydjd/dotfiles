@@ -11,10 +11,11 @@ require("vicious")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+--beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt256c"
+terminal = "/usr/local/bin/urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 file_manager = "dolphin"
@@ -79,6 +80,10 @@ internetmenu = {
     { "wireshark" , "wireshark" }
 }
 
+utilmenu = {
+    { "keepass", "mono /usr/bin/KeePass/KeePass.exe" }
+}
+
 graphicsmenu = {
     { "gimp", "gimp" }
 }
@@ -92,6 +97,7 @@ multimediamenu = {
 mymainmenu = awful.menu({ items = { { "terminal", terminal },
                                     { "internet", internetmenu },
                                     { "office", officemenu },
+                                    { "utils", utilmenu },
                                     { "multimedia", multimediamenu },
                                     { "graphics", graphicsmenu },
                                     { "awesome", myawesomemenu, beautiful.awesome_icon }
@@ -277,6 +283,7 @@ for i = 1, keynumber do
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
+        awful.key({ modkey }, "F12", function () awful.util.spawn("xlock") end),
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
