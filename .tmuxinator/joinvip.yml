@@ -1,0 +1,18 @@
+# ~/.tmuxinator/joinvip.yml
+# you can make as many tabs as you wish...
+
+project_name: JoinVIP 
+project_root: ~/src/joinvip/www
+socket_name: foo # Not needed.  Remove to use default socket
+rvm: 2.0.0
+#pre: sudo /etc/rc.d/mysqld start
+tabs:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim
+        - #empty, will just run plain bash
+        - htop
+  - shell: git pull
+  - database: mysql vip_web 
+  - logs: tail -f logs/error_log
