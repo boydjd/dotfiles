@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 . /etc/bashrc
 fi
 
+. /usr/share/doc/git-1.7.11.7/contrib/completion/git-completion.bash
+
 set -o vi
 
 # User specific aliases and functions
@@ -30,3 +32,8 @@ alias cvswhat='cvs status \!* |& grep Status: |& grep -v "to-date"'
 export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKDFILES=true
+
+eval `dircolors /home/jboyd/.dir_colors`
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
